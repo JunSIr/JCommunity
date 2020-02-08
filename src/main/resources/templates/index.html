@@ -40,11 +40,15 @@
                 </div>
                 <button type="submit" class="btn btn-default">搜索</button>
             </form>
-
-
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="https://github.com/login/oauth/authorize?client_id=e8030320feea0161dd97&redirect_uri=http://localhost:8877/github/collback">登陆</a></li>
-                <li class="dropdown">
+
+
+                <li th:if="${session.user==null}">
+                    <a href="https://github.com/login/oauth/authorize?client_id=e8030320feea0161dd97&redirect_uri=http://localhost:8877/github/collback">登陆</a>
+                </li>
+
+
+                <li th:if="${session.user!=null}" class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">我 <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="#">个人中心</a></li>
@@ -58,5 +62,7 @@
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
+
+
 </body>
 </html>

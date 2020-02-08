@@ -1,4 +1,4 @@
-package com.junsir.community.community.Dao;
+package com.junsir.community.community.model;
 
 public class GitHubUser {
     private  String  login ;

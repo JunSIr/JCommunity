@@ -2,7 +2,7 @@ package com.junsir.community.community.Provider;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.junsir.community.community.Dao.GitHubUser;
+import com.junsir.community.community.model.GitHubUser;
 import okhttp3.*;
 import org.springframework.stereotype.Component;
 
@@ -13,9 +13,9 @@ public class GitHubExchange {
 
     public static final MediaType JSON
             = MediaType.get("application/json; charset=utf-8");
-
-
         OkHttpClient client = new OkHttpClient();
+
+
 
         public  String post(String url, String json) throws IOException {
             RequestBody body = RequestBody.create(json, JSON);
@@ -28,27 +28,27 @@ public class GitHubExchange {
             }
         }
 
-    public  GitHubUser getUser(String token) throws IOException {
+        public  GitHubUser getUser(String token) throws IOException {
 
-        /*Token切割*/
-        String[] tokenStrArry = token.split("&");
-        String tokenStr = tokenStrArry[0] ;
-        tokenStrArry = tokenStr.split("=") ;
-        tokenStr = tokenStrArry[1] ;
+            /*Token切割*/
+            String[] tokenStrArry = token.split("&");
+            String tokenStr = tokenStrArry[0] ;
+            tokenStrArry = tokenStr.split("=") ;
+            tokenStr = tokenStrArry[1] ;
 
-        Request request = new Request.Builder()
-                .url("https://api.github.com/user?access_token="+tokenStr)
-                .build();
-        try (Response response = client.newCall(request).execute()) {
-            String resStr = response.body().string();
-            System.out.println(resStr);
-            GitHubUser user =  com.alibaba.fastjson.JSON.parseObject(resStr, GitHubUser.class);
+            Request request = new Request.Builder()
+                    .url("https://api.github.com/user?access_token="+tokenStr)
+                    .build();
+            try (Response response = client.newCall(request).execute()) {
+                String resStr = response.body().string();
 
-            return user ;
+                GitHubUser user =  com.alibaba.fastjson.JSON.parseObject(resStr, GitHubUser.class);
+
+                return user ;
+            }
         }
-    }
 
-    }
+        }
 
 
 
