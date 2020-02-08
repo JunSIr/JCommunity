@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.junsir.community.community.model.GitHubUser;
 import com.junsir.community.community.Provider.GitHubExchange;
 
+import com.junsir.community.community.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -22,6 +23,9 @@ public class GitHubController {
 
     @Autowired
     public GitHubExchange gitHubExchange ;
+
+    @Autowired
+    private UserService userService ;
 
     /*快速提取配置文件的内容*/
     @Value("${client_id}")
@@ -43,10 +47,16 @@ public class GitHubController {
         String json = jsonObject.toString();
         String  accessToken = gitHubExchange.post(url,json) ;
 
-
+        /*得到Github用户信息并以对象存储*/
         GitHubUser user = gitHubExchange.getUser(accessToken) ;
-
         System.out.println(user);
+
+        /*新用户入库*/
+        if (userService.selectUserById(user.getId())==null){
+            userService.insertUserInToMysql(user) ;
+        }
+
+
 
         /*user写入session*/
         request.getSession().setAttribute("user",user);

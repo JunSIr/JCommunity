@@ -11,6 +11,10 @@ import java.io.IOException;
 @Component
 public class GitHubExchange {
 
+    /*
+    * 本类使用okHttp进行Get访问与Post访问
+    * 代码为okHttp提供
+    * */
     public static final MediaType JSON
             = MediaType.get("application/json; charset=utf-8");
         OkHttpClient client = new OkHttpClient();

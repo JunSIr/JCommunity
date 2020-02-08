@@ -29,13 +29,7 @@ public class GitHubUser {
         this.login = login;
     }
 
-    public String getid() {
-        return id;
-    }
 
-    public void setUserId(String id) {
-        this.id = id;
-    }
 
     @Override
     public String toString() {
