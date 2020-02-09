@@ -64,6 +64,7 @@
 </nav>
 
 
+
 <div class="container-fluid">
     <!-- Stack the columns on mobile by making one full-width and the other half-width -->
     <div class="row">
@@ -71,7 +72,7 @@
             <h2><span class="glyphicon glyphicon glyphicon-plus" aria-hidden="true" ></span>发起</h2>
             <hr>
 
-            <form action="">
+            <form action="/publishQuesion" method="post">
 
                 <div class="form-group">
                     <label for="title">问题标题（简单扼要）:</label>
@@ -84,8 +85,8 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="mark">添加标签:</label>
-                    <input type="text" class="form-control" id="mark" name="mark" placeholder="标签..以;分割">
+                    <label for="tag">添加标签:</label>
+                    <input type="text" class="form-control" id="tag" name="tag" placeholder="标签..以;分割">
                 </div>
                 <button type="submit" class="btn btn-success btn-publish">发布</button>
             </form>

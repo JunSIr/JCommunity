@@ -39,6 +39,7 @@ public interface UserMapper {
     })
     int insertInToMySql(GitHubUser user);*/
 
+
     @Insert("insert into GITHUB_USER (user_name, id, url,token, avatar_url) values (#{login},#{id},#{url},#{token},#{avatarUrl})")
     @Results({
             @Result( property = "login",column = "user_name"),

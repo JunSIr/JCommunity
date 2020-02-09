@@ -88,8 +88,9 @@ public class Question implements Serializable {
         return lastPushTime;
     }
 
-    public void setLastPushTime(Date lastPushTime) {
+    public Date setLastPushTime(Date lastPushTime) {
         this.lastPushTime = lastPushTime;
+        return lastPushTime;
     }
 
     public String getDescription() {

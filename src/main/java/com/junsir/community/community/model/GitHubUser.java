@@ -1,5 +1,7 @@
 package com.junsir.community.community.model;
 
+import javax.swing.plaf.nimbus.NimbusLookAndFeel;
+
 public class GitHubUser {
     private  String  login ;
     private  String id ;
@@ -13,6 +15,7 @@ public class GitHubUser {
 
     public void setAvatarUrl(String avatarUrl) {
         this.avatarUrl = avatarUrl;
+
     }
 
     public String getToken() {

@@ -1,7 +1,10 @@
 package com.junsir.community.community;
 
+import com.junsir.community.community.Dao.QuestionDao;
+import com.junsir.community.community.Dao.UserDao;
 import com.junsir.community.community.mapper.UserMapper;
 import com.junsir.community.community.model.GitHubUser;
+import com.junsir.community.community.model.Question;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -12,6 +15,11 @@ class CommunityApplicationTests {
     @Autowired
     private UserMapper userMapper ;
 
+    @Autowired
+    private UserDao userDao ;
+
+    @Autowired
+    private QuestionDao questionDao ;
     @Test
     void contextLoads() {
     }
@@ -19,15 +27,11 @@ class CommunityApplicationTests {
     @Test
     void testSelect(){
 
-/*        GitHubUser user = userMapper.findByID("56471335");
-        System.out.println(user);*/
-        GitHubUser user =new GitHubUser();
-        user.setId("111");
-        user.setLogin("junsir");
-        user.setUrl("www.alibaba.com");
+        Integer id = 1 ;
+        Question question = questionDao.findQuestionById(id) ;
+        System.out.println(question);
 
-        int k = userMapper.insertInToMySql(user) ;
-        System.out.println(k);
+
     }
 
 }

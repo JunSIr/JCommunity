@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.junsir.community.community.Dao.QuestionDao">
+
+
+
+<!--  <resultMap id="BaseResultMap" type="com.junsir.community.community.model.Question">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="comment_count" jdbcType="INTEGER" property="commentCount" />
+    <result column="view_count" jdbcType="INTEGER" property="viewCount" />
+    <result column="awesome_count" jdbcType="INTEGER" property="awesomeCount" />
+    <result column="tag" jdbcType="VARCHAR" property="tag" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="last_push_time" jdbcType="DATE" property="lastPushTime" />
+  </resultMap>
+
+
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.junsir.community.community.model.Question">
+    <result column="description" jdbcType="LONGVARCHAR" property="description" />
+  </resultMap>-->
+
+  <select id="findQuestionById" parameterType="Integer" resultType="com.junsir.community.community.model.Question">
+        SELECT * FROM question WHERE id = #{id}
+    </select>
+
+    <insert id="insertByFirstPush" keyColumn="id" keyProperty="id" parameterType="com.junsir.community.community.model.Question" useGeneratedKeys="true">
+    insert into question (title, tag, user_id,
+      last_push_time, description)
+    values (#{title,jdbcType=VARCHAR},  #{tag,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR},
+      #{lastPushTime,jdbcType=DATE}, #{description,jdbcType=LONGVARCHAR})
+  </insert>
+
+</mapper>
