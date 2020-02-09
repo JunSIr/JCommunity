@@ -12,6 +12,13 @@ public interface UserMapper {
             }) GitHubUser findByID(@Param("id") String id);
 
 
+
+    @Select("SELECT * FROM GITHUB_USER WHERE token = #{token}")
+    @Results({
+            @Result( property = "login",column = "user_name")
+    }) GitHubUser findByToken(@Param("token") String token);
+
+
     /*注解Param内的参数与数据库表对应
     * userName则无关
     * */
@@ -30,7 +37,7 @@ public interface UserMapper {
     })
     int insertInToMySql(GitHubUser user);*/
 
-    @Insert("insert into GITHUB_USER (user_name, id, url) values (#{login},#{id},#{url})")
+    @Insert("insert into GITHUB_USER (user_name, id, url,token) values (#{login},#{id},#{url},#{token})")
     @Results({
             @Result( property = "login",column = "user_name")
     })

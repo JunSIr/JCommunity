@@ -11,7 +11,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -35,7 +37,7 @@ public class GitHubController {
     public  String clientSecret ;
 
     @GetMapping("/github/collback")
-    public  String callback(@RequestParam(name = "code")String code, HttpServletRequest request) throws IOException {
+    public  String callback(@RequestParam(name = "code")String code, HttpServletRequest request,  RedirectAttributes attributes) throws IOException {
 
         /*遵从GitHub第三方登陆授权流程*/
         String url = "https://github.com/login/oauth/access_token" ;
@@ -56,10 +58,19 @@ public class GitHubController {
             userService.insertUserInToMysql(user) ;
         }
 
+        /*将token传到即将转发的Controller*/
+        GitHubUser user1= userService.selectUserById(user.getId());
+        String token = user1.getToken();
+        attributes.addAttribute("token",token);
+
+
 
 
         /*user写入session*/
         request.getSession().setAttribute("user",user);
+
+
+
 
 
         /*Controller之间的重定向

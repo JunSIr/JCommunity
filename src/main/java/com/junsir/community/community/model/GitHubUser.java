@@ -4,6 +4,15 @@ public class GitHubUser {
     private  String  login ;
     private  String id ;
     private String url  ;
+    private String token ;
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
 
     public String getId() {
         return id;
@@ -30,13 +39,13 @@ public class GitHubUser {
     }
 
 
-
     @Override
     public String toString() {
         return "GitHubUser{" +
                 "login='" + login + '\'' +
                 ", id='" + id + '\'' +
                 ", url='" + url + '\'' +
+                ", token='" + token + '\'' +
                 '}';
     }
 }

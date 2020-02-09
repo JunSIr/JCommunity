@@ -19,6 +19,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public GitHubUser selectUserByToken(String token) {
+        GitHubUser user = userMapper.findByToken(token);
+        return user;
+    }
+
+    @Override
     public int insertUserInToMysql(GitHubUser user) {
 
         int k = userMapper.insertInToMySql(user) ;

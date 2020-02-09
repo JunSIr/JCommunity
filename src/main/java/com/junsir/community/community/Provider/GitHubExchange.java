@@ -40,6 +40,8 @@ public class GitHubExchange {
             tokenStrArry = tokenStr.split("=") ;
             tokenStr = tokenStrArry[1] ;
 
+
+
             Request request = new Request.Builder()
                     .url("https://api.github.com/user?access_token="+tokenStr)
                     .build();
@@ -47,6 +49,9 @@ public class GitHubExchange {
                 String resStr = response.body().string();
 
                 GitHubUser user =  com.alibaba.fastjson.JSON.parseObject(resStr, GitHubUser.class);
+
+                /*为了将Token存在数据库中，以便我们做cookie*/
+                user.setToken(tokenStr);
 
                 return user ;
             }
