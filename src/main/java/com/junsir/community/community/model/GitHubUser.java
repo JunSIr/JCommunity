@@ -5,6 +5,15 @@ public class GitHubUser {
     private  String id ;
     private String url  ;
     private String token ;
+    private String avatarUrl  ;
+
+    public String getAvatarUrl() {
+        return avatarUrl;
+    }
+
+    public void setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
+    }
 
     public String getToken() {
         return token;
@@ -46,6 +55,7 @@ public class GitHubUser {
                 ", id='" + id + '\'' +
                 ", url='" + url + '\'' +
                 ", token='" + token + '\'' +
+                ", avatarUrl='" + avatarUrl + '\'' +
                 '}';
     }
 }

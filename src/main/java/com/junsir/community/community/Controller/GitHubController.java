@@ -48,6 +48,7 @@ public class GitHubController {
         JSONObject jsonObject = new JSONObject(map) ;
         String json = jsonObject.toString();
         String  accessToken = gitHubExchange.post(url,json) ;
+        System.out.println("accessToken="+accessToken);
 
         /*得到Github用户信息并以对象存储*/
         GitHubUser user = gitHubExchange.getUser(accessToken) ;

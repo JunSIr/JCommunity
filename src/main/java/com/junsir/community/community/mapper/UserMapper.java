@@ -8,14 +8,16 @@ public interface UserMapper {
 
     @Select("SELECT * FROM GITHUB_USER WHERE ID = #{id}")
     @Results({
-            @Result( property = "login",column = "user_name")
+            @Result( property = "login",column = "user_name"),
+            @Result( property = "avatarUrl",column = "avatar_url")
             }) GitHubUser findByID(@Param("id") String id);
 
 
 
     @Select("SELECT * FROM GITHUB_USER WHERE token = #{token}")
     @Results({
-            @Result( property = "login",column = "user_name")
+            @Result( property = "login",column = "user_name"),
+            @Result( property = "avatarUrl",column = "avatar_url")
     }) GitHubUser findByToken(@Param("token") String token);
 
 
@@ -37,9 +39,10 @@ public interface UserMapper {
     })
     int insertInToMySql(GitHubUser user);*/
 
-    @Insert("insert into GITHUB_USER (user_name, id, url,token) values (#{login},#{id},#{url},#{token})")
+    @Insert("insert into GITHUB_USER (user_name, id, url,token, avatar_url) values (#{login},#{id},#{url},#{token},#{avatarUrl})")
     @Results({
-            @Result( property = "login",column = "user_name")
+            @Result( property = "login",column = "user_name"),
+            @Result( property = "avatarUrl",column = "avatar_url")
     })
     int insertInToMySql(GitHubUser user);
 
