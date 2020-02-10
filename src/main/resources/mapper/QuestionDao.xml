@@ -29,7 +29,7 @@
     insert into question (title, tag, user_id,
       last_push_time, description)
     values (#{title,jdbcType=VARCHAR},  #{tag,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR},
-      #{lastPushTime,jdbcType=DATE}, #{description,jdbcType=LONGVARCHAR})
+      #{lastPushTime,jdbcType=VARCHAR}, #{description,jdbcType=LONGVARCHAR})
   </insert>
 
 </mapper>

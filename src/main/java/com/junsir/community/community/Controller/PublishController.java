@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Controller
@@ -27,7 +28,11 @@ import java.util.Date;
         System.out.println(question);
 
         /*设置修改/发布时间*/
-      question.setLastPushTime(new Date());
+        Date date = new Date() ;
+        SimpleDateFormat sim = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String dateStr = sim.format(date) ;
+        question.setLastPushTime(dateStr);
+
         /*设置userID*/
       GitHubUser user = (GitHubUser) request.getSession().getAttribute("user");
       String id = user.getId();

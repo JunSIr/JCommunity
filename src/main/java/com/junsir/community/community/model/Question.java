@@ -1,7 +1,7 @@
 package com.junsir.community.community.model;
 
 import java.io.Serializable;
-import java.util.Date;
+
 
 /**
  * question
@@ -22,7 +22,7 @@ public class Question implements Serializable {
 
     private String userId;
 
-    private Date lastPushTime;
+    private String lastPushTime;
 
     private String description;
 
@@ -84,11 +84,11 @@ public class Question implements Serializable {
         this.userId = userId;
     }
 
-    public Date getLastPushTime() {
+    public String getLastPushTime() {
         return lastPushTime;
     }
 
-    public Date setLastPushTime(Date lastPushTime) {
+    public String setLastPushTime(String lastPushTime) {
         this.lastPushTime = lastPushTime;
         return lastPushTime;
     }
