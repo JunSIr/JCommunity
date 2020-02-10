@@ -5,7 +5,7 @@
 
 
 
-<!--  <resultMap id="BaseResultMap" type="com.junsir.community.community.model.Question">
+<resultMap id="BaseResultMap" type="com.junsir.community.community.model.Question">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="title" jdbcType="VARCHAR" property="title" />
     <result column="comment_count" jdbcType="INTEGER" property="commentCount" />
@@ -16,10 +16,15 @@
     <result column="last_push_time" jdbcType="DATE" property="lastPushTime" />
   </resultMap>
 
+    <!--
+      <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.junsir.community.community.model.Question">
+        <result column="description" jdbcType="LONGVARCHAR" property="description" />
+      </resultMap>-->
 
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.junsir.community.community.model.Question">
-    <result column="description" jdbcType="LONGVARCHAR" property="description" />
-  </resultMap>-->
+    <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.junsir.community.community.Dto.QuestionDto">
+        <result column="description" jdbcType="LONGVARCHAR" property="description" />
+        <result column="avatar_url" jdbcType="LONGVARCHAR" property="avatar_url" />
+    </resultMap>
 
   <select id="findQuestionById" parameterType="Integer" resultType="com.junsir.community.community.model.Question">
         SELECT * FROM question WHERE id = #{id}
@@ -32,4 +37,7 @@
       #{lastPushTime,jdbcType=VARCHAR}, #{description,jdbcType=LONGVARCHAR})
   </insert>
 
+    <select id="selectQuestionsAndUserAvatarToIndex" resultType="com.junsir.community.community.Dto.QuestionDto">
+        SELECT  q.* , u.avatar_url  from question q , github_user u WHERE q.user_id=u.id
+    </select>
 </mapper>
