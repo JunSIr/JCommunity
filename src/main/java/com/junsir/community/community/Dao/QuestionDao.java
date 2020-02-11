@@ -1,8 +1,11 @@
 package com.junsir.community.community.Dao;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageRowBounds;
 import com.junsir.community.community.Dto.QuestionDto;
 import com.junsir.community.community.model.Question;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.session.RowBounds;
 
 import java.util.List;
 
@@ -10,6 +13,8 @@ import java.util.List;
 public interface QuestionDao {
 
     public  int insertByFirstPush(Question question)  ;
+
+
 
     public List<QuestionDto> selectQuestionsAndUserAvatarToIndex()  ;
 }

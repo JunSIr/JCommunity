@@ -1,5 +1,7 @@
 package com.junsir.community.community;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.junsir.community.community.Dao.QuestionDao;
 
 import com.junsir.community.community.Dto.QuestionDto;
@@ -31,10 +33,13 @@ class CommunityApplicationTests {
     @Test
     void testSelect(){
 
+        PageHelper.startPage(1, 5);
         List<QuestionDto> listQ  = questionDao.selectQuestionsAndUserAvatarToIndex() ;
-        for (QuestionDto questionDto : listQ) {
-            System.out.println(questionDto);
-        }
+        PageInfo pageInfo= new PageInfo(listQ);
+        System.out.println(pageInfo.getTotal());
+        System.out.println(pageInfo.getPages());
+
+
 
     }
 

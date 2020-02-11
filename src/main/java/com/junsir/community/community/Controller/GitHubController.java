@@ -50,6 +50,7 @@ public class GitHubController {
         String  accessToken = gitHubExchange.post(url,json) ;
         System.out.println("accessToken="+accessToken);
 
+
         /*得到Github用户信息并以对象存储*/
         GitHubUser user = gitHubExchange.getUser(accessToken) ;
         System.out.println(user);

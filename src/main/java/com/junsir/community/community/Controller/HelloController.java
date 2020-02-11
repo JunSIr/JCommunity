@@ -2,9 +2,11 @@ package com.junsir.community.community.Controller;
 
 
 
+import com.junsir.community.community.Dto.PageDto;
 import com.junsir.community.community.Dto.QuestionDto;
 import com.junsir.community.community.model.GitHubUser;
 import com.junsir.community.community.model.Question;
+import com.junsir.community.community.service.PageService;
 import com.junsir.community.community.service.QuestionService;
 import com.junsir.community.community.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,9 @@ public class HelloController {
 
     @Autowired
     private QuestionService questionService ;
+
+    @Autowired
+    private PageService pageService ;
 
     @GetMapping("/")
     public String greeting(@RequestParam(name="name", required=false, defaultValue="World") String name, Model model, HttpServletRequest request, HttpServletResponse response) {
@@ -64,9 +69,11 @@ public class HelloController {
 
         /*获取问题集合*/
         List<QuestionDto> listQ = questionService.selectQuestionsAndUserAvatarToIndex();
-
         model.addAttribute("listQ",listQ) ;
 
+        /*初始化页面参数*/
+        PageDto pageDto =  pageService.getPage(0) ;
+        model.addAttribute("pageDto",pageDto)  ;
 
         return "index";
     }

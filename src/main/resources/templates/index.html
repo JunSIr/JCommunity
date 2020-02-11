@@ -1,16 +1,31 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <script type="text/javascript" src="js/jquery-3.3.1.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/bootstrap-theme.css">
 
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 
 <head>
+    <script th:inline="javascript">
+        function valid() {
+            var message = [[${pageNum}]];
 
+            var pages = [[${pages}]] ;
+
+
+            if (message==pages&&message!=null&&pages!=null){
+                alert("已经是最后一页") ;
+
+            }
+        }
+
+    </script>
 
     <title>J社区</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
 
 
 
@@ -81,12 +96,38 @@
             <div class="media-body">
                 <h4 class="media-heading" ><a th:text="${questionDto.title}"></a></h4>
 
-                <span class="text-color-999">发布了置顶文章 • <span th:text="${questionDto.commentCount}"></span>个评论 • <span th:text="${questionDto.viewCount}"></span> 次浏览 • <span th:text="${questionDto.lastPushTime}"></span>
+                <span class="text-color-999">发布了文章 • <span th:text="${questionDto.commentCount}"></span>个评论 • <span th:text="${questionDto.viewCount}"></span> 次浏览 • <span th:text="${questionDto.lastPushTime}"></span>
                 </span>
             </div>
 
+
+
             </div>
 
+
+            <nav aria-label="...">
+
+                <input type="hidden" value="11">
+
+                <ul  class="pager">
+                    <div class="pageDto" th:each="page : ${pageDto}">
+
+                    <li>
+                        <a  th:if="${page.pageNum}!=1" class="previous" th:href="@{/Page(currentPageNum=${page.pageNum}-2)}" >上一页</a>
+                    </li>
+
+                    <li><a  th:if="${page.pageNum}!=${page.pages}" class="next" th:onclick="valid()" th:href="@{/Page(currentPageNum=${page.pageNum})}">下一页</a></li>
+
+
+                    <div class="media" >
+
+                        当前页码：<span class="pageNum" th:text="${page.pageNum}"></span>
+                          总页数：<span class="pages" th:text="${page.pages}"></span>
+                    </div>
+                    </div>
+                </ul>
+
+            </nav>
 
 
         </div>

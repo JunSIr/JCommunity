@@ -1,5 +1,6 @@
 package com.junsir.community.community.service.serviceimpl;
 
+import com.github.pagehelper.PageHelper;
 import com.junsir.community.community.Dao.QuestionDao;
 import com.junsir.community.community.Dto.QuestionDto;
 import com.junsir.community.community.model.Question;
@@ -16,7 +17,10 @@ public class QuestionServiceImpl implements QuestionService {
     private QuestionDao questionDao;
 
     @Override
+
     public List<QuestionDto> selectQuestionsAndUserAvatarToIndex() {
+
+        PageHelper.startPage(1, 5);
         List<QuestionDto> listQ  = questionDao.selectQuestionsAndUserAvatarToIndex() ;
 
         return listQ;
