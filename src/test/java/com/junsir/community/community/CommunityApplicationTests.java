@@ -8,6 +8,7 @@ import com.junsir.community.community.Dto.QuestionDto;
 import com.junsir.community.community.mapper.UserMapper;
 import com.junsir.community.community.model.GitHubUser;
 import com.junsir.community.community.model.Question;
+import com.junsir.community.community.service.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -22,22 +23,20 @@ class CommunityApplicationTests {
     @Autowired
     private UserMapper userMapper ;
 
-
+    @Autowired
+    private UserService userService ;
 
     @Autowired
     private QuestionDao questionDao ;
     @Test
     void contextLoads() {
+        System.out.println("userService="+userService);
     }
 
     @Test
     void testSelect(){
 
-        PageHelper.startPage(1, 5);
-        List<QuestionDto> listQ  = questionDao.selectQuestionsAndUserAvatarToIndex() ;
-        PageInfo pageInfo= new PageInfo(listQ);
-        System.out.println(pageInfo.getTotal());
-        System.out.println(pageInfo.getPages());
+
 
 
 

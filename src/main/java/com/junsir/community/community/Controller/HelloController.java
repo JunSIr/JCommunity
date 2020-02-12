@@ -23,8 +23,7 @@ import java.util.List;
 @Controller
 public class HelloController {
 
-    @Autowired
-    private UserService userService ;
+
 
     @Autowired
     private QuestionService questionService ;
@@ -33,30 +32,11 @@ public class HelloController {
     private PageService pageService ;
 
     @GetMapping("/")
-    public String greeting(@RequestParam(name="name", required=false, defaultValue="World") String name, Model model, HttpServletRequest request, HttpServletResponse response) {
-        model.addAttribute("name", name);
-
-        /*检测用户浏览器是否存在当前用户，优化时放在拦截器里*/
-        Cookie[] cookies =  request.getCookies();
-        if (cookies!=null) {
-            for (Cookie cookie1 : cookies) {
-                if ("token".equals(cookie1.getName())){
-                    String token = cookie1.getValue() ;
-                    System.out.println("tokenStr="+token);
-                    GitHubUser user = userService.selectUserByToken(token);
-                    if (user!=null){
-                        /*user写入session*/
-                        request.getSession().setAttribute("user",user);
-                        break;
-                    }
-                }
-            }
-        }
+    public String greeting(Model model, HttpServletRequest request, HttpServletResponse response) {
 
         /*将Token通过Cookie存到用户客户端（浏览器）
          * */
         String tokenStr = request.getParameter("token");
-
         if (tokenStr!=null) {
             /*加入Cookie*/
             Cookie cookie = new Cookie("token", tokenStr);
