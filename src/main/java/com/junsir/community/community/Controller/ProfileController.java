@@ -22,8 +22,6 @@ public class ProfileController {
         PageDto pageDto =  pageService.getPage(currentPageNum) ;
         /*写给前端页面*/
         model.addAttribute("pageDto",pageDto)  ;
-
-        /*给thymeleaf with JS准备的*/
         model.addAttribute("pageNum",pageDto.getPageNum());
         model.addAttribute("pages",pageDto.getPages());
         model.addAttribute("listQ",pageDto.getQuestionList());

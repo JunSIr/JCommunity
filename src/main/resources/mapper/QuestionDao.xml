@@ -44,4 +44,46 @@
     <select id="selectQuestionsAndUserAvatarToIndexByUser" parameterType="string" resultType="com.junsir.community.community.Dto.QuestionDto">
         SELECT  q.* , u.avatar_url  from question q , github_user u WHERE q.user_id=u.id and user_id=#{"userId"}
     </select>
+
+
+    <resultMap id="BaseResultMapOfUser" type="com.junsir.community.community.model.GitHubUser">
+        <result column="user_name" jdbcType="VARCHAR" property="login" />
+    </resultMap>
+
+    <select id="selectUserByQuestionId" parameterType="int" resultMap="BaseResultMapOfUser">
+        select u.* from github_user u , question q where q.user_id=u.id and q.id=#{id}
+    </select>
+
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.junsir.community.community.model.Question">
+        update question
+        <set>
+            <if test="title != null">
+                title = #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="commentCount != null">
+                comment_count = #{commentCount,jdbcType=INTEGER},
+            </if>
+            <if test="viewCount != null">
+                view_count = #{viewCount,jdbcType=INTEGER},
+            </if>
+            <if test="awesomeCount != null">
+                awesome_count = #{awesomeCount,jdbcType=INTEGER},
+            </if>
+            <if test="tag != null">
+                tag = #{tag,jdbcType=VARCHAR},
+            </if>
+            <if test="userId != null">
+                user_id = #{userId,jdbcType=VARCHAR},
+            </if>
+            <if test="lastPushTime != null">
+                last_push_time = #{lastPushTime,jdbcType=DATE},
+            </if>
+            <if test="description != null">
+                description = #{description,jdbcType=LONGVARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
 </mapper>

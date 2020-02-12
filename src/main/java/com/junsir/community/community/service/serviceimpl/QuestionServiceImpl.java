@@ -3,6 +3,7 @@ package com.junsir.community.community.service.serviceimpl;
 import com.github.pagehelper.PageHelper;
 import com.junsir.community.community.Dao.QuestionDao;
 import com.junsir.community.community.Dto.QuestionDto;
+import com.junsir.community.community.model.GitHubUser;
 import com.junsir.community.community.model.Question;
 import com.junsir.community.community.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,5 +25,23 @@ public class QuestionServiceImpl implements QuestionService {
         List<QuestionDto> listQ  = questionDao.selectQuestionsAndUserAvatarToIndex() ;
 
         return listQ;
+    }
+
+    @Override
+    public GitHubUser selectUserByQuestionId(int id) {
+        GitHubUser user = questionDao.selectUserByQuestionId(id) ;
+        return user ;
+    }
+
+    @Override
+    public Question findQuestionById(int id) {
+        Question question = questionDao.findQuestionById(id) ;
+        return  question ;
+    }
+
+    @Override
+    public int updateByPrimaryKeySelective(Question question) {
+        int k = questionDao.updateByPrimaryKeySelective(question) ;
+        return  k ;
     }
 }

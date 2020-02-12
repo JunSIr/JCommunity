@@ -1,0 +1,91 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<script type="text/javascript" src="js/jquery-3.3.1.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/bootstrap-theme.css">
+
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+<head>
+    <style th:inline="css">
+        .media-body{
+            padding-top: 15px;
+        }
+        .creator{
+            padding-top: 50px;
+        }
+    </style>
+
+    <title>J社区</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+</head>
+<body>
+
+<nav th:insert="~{nav.html :: #copy-section}" ></nav>
+
+<div class="container-fluid">
+    <!-- Stack the columns on mobile by making one full-width and the other half-width -->
+    <div class="row">
+        <div class="col-lg-9 col-md-12 col-sm-12">
+
+
+                <h2 th:text="${question.title}"></h2>
+            <span>
+                发布于
+                <span th:text="${question.lastPushTime}"></span>
+                |  阅读数
+                <span th:text="${question.viewCount}"></span>
+                |  评论数
+                <span th:text="${question.commentCount}"></span>
+                |  推荐数
+                <span th:text="${question.awesomeCount}"></span>
+                |  -
+                <span class="glyphicon glyphicon-pencil" aria-hidden="true" ><a th:href="@{/toUpdateQuestion(id=${question.id})}">编辑</a></span>
+            </span>
+
+            <hr>
+
+            <p th:text="${question.description}"></p>
+
+
+
+
+
+
+
+
+            </div>
+
+
+
+
+        <div class="col-lg-3 col-md-12 col-sm-12">
+            <h3 class="creator">发起人</h3>
+
+            <div class="media">
+                <div class="media-left media-middle">
+                    <a href="#">
+                        <img class="media-object" width="60px" height="60px" th:src="@{${user.avatarUrl}}" alt="...">
+                    </a>
+                </div>
+                <div class="media-body">
+                    <h4  th:text="${user.login}" class="media-heading"></h4>
+                    <h4 class="media-heading"><span class="label label-warning"><a>关注</a></span></h4>
+
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+    </div>
+
+
+
+
+
+</body>
+</html>

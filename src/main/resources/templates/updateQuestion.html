@@ -27,15 +27,23 @@
             <h2><span class="glyphicon glyphicon glyphicon-plus" aria-hidden="true" ></span>发起</h2>
             <hr>
 
-            <form action="/publishQuesion" method="post">
+            <form action="/updateQuestion"  method="post"  >
 
 
 
                 <div class="form-group">
+                        <label for="id">id验证</label>
+                        <input type="text" class="form-control" placeholder="请输入下方显示数字" id="id" name="id" ></input>
+
+                        <input type="hidden" class="form-control" th:text="${id}" id="id"name="id" placeholder="问题标题……">
+
+                    <br>
+
                     <label for="title">问题标题（简单扼要）:</label>
-                    <input type="text" class="form-control" id="title" name="title" placeholder="问题标题……">
+                    <input th:value="${question.title}" type="text" class="form-control" id="title" name="title" placeholder="问题标题……">
                 </div>
                 <div class="form-group">
+
                     <label for="description">问题补充 (必填，请参照右侧提示):</label>
                     <textarea name="description" id="description" class="form-control" cols="30"
                               rows="10" placeholder="问题补充……"></textarea>
@@ -46,6 +54,7 @@
                     <input type="text" class="form-control" id="tag" name="tag" placeholder="标签..以;分割">
                 </div>
                 <button type="submit" class="btn btn-success btn-publish">发布</button>
+
             </form>
         </div>
 
