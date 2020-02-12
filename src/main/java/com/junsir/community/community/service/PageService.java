@@ -11,4 +11,6 @@ public interface PageService {
 
     public PageDto getPage(Integer currentPageNum) ;
 
+    public PageDto getPageByUser(Integer currentPageNum,String userId) ;
+
 }

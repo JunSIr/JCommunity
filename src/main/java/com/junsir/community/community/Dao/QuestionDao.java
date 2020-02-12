@@ -17,4 +17,6 @@ public interface QuestionDao {
 
 
     public List<QuestionDto> selectQuestionsAndUserAvatarToIndex()  ;
+    /*个人问题*/
+    public List<QuestionDto> selectQuestionsAndUserAvatarToIndexByUser(String UserId)  ;
 }

@@ -16,9 +16,11 @@ public class PageDto {
         return questionList;
     }
 
+
     public void setQuestionList(List<QuestionDto> questionList) {
         this.questionList = questionList;
     }
+
 
     public Integer getPageNum() {
         return pageNum;

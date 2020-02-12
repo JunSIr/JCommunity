@@ -1,0 +1,98 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<script type="text/javascript" src="/js/jquery-3.3.1.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/bootstrap-theme.css">
+
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+
+<head>
+    <style th:inline="css">
+        .list-group{
+            margin-top: 80px;
+
+        }
+    </style>
+
+    <title>J社区</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+</head>
+<body>
+
+<nav th:insert="~{nav.html :: #copy-section}" ></nav>
+
+
+
+<div class="container-fluid">
+    <!-- Stack the columns on mobile by making one full-width and the other half-width -->
+    <div class="row">
+        <div class="col-lg-9 col-md-12 col-sm-12">
+            <h2><span class="glyphicon glyphicon-align-justify" aria-hidden="true" ></span> 个人中心</h2>
+            <hr>
+
+            <div class="media" th:each="questionDto : ${listQ}">
+                <div class="media-left media-middle" >
+                    <a href="#">
+                        <img class="media-object" width="38px" height="38px" th:src="@{${questionDto.avatarUrl}}" alt="..."></a>
+                </div>
+                <div class="media-body">
+                    <h4 class="media-heading" ><a th:text="${questionDto.title}"></a></h4>
+
+                    <span class="text-color-999">发布了文章 • <span th:text="${questionDto.commentCount}"></span>个评论 • <span th:text="${questionDto.viewCount}"></span> 次浏览 • <span th:text="${questionDto.lastPushTime}"></span>
+                </span>
+                </div>
+
+            </div>
+
+
+            <nav aria-label="...">
+
+                <input type="hidden" value="11">
+
+                <ul  class="pager">
+                    <div class="pageDto" th:each="page : ${pageDto}">
+
+                        <li>
+                            <a  th:if="${page.pageNum}!=1" class="previous" th:href="@{/profile/question(currentPageNum=${page.pageNum}-2)}" >上一页</a>
+                        </li>
+
+                        <li><a  th:if="${page.pageNum}!=${page.pages}" class="next" th:onclick="valid()" th:href="@{/profile/question(currentPageNum=${page.pageNum})}">下一页</a></li>
+
+
+                        <div class="media" >
+
+                            当前页码：<span class="pageNum" th:text="${page.pageNum}"></span>
+                            总页数：<span class="pages" th:text="${page.pages}"></span>
+                        </div>
+                    </div>
+                </ul>
+
+            </nav>
+
+
+        </div>
+
+        <div class="col-lg-3 col-md-12 col-sm-12">
+
+
+                <div class="list-group">
+
+                        <a th:class="${question}? 'list-group-item active' : 'list-group-item'"  href="/profile/question?currentPageNum=0">我的问题 </a>
+
+                        <a th:class="${recommendation}? 'list-group-item active' : 'list-group-item'" href="/profile/recommendation">我的推荐 </a>
+
+                        <a th:class="${comment}? 'list-group-item active' : 'list-group-item'" href="/profile/comment">我的评论 </a>
+                </div>
+
+
+        </div>
+    </div>
+</div>
+
+
+
+
+</body>
+</html>

@@ -40,4 +40,8 @@
     <select id="selectQuestionsAndUserAvatarToIndex" resultType="com.junsir.community.community.Dto.QuestionDto">
         SELECT  q.* , u.avatar_url  from question q , github_user u WHERE q.user_id=u.id
     </select>
+
+    <select id="selectQuestionsAndUserAvatarToIndexByUser" parameterType="string" resultType="com.junsir.community.community.Dto.QuestionDto">
+        SELECT  q.* , u.avatar_url  from question q , github_user u WHERE q.user_id=u.id and user_id=#{"userId"}
+    </select>
 </mapper>

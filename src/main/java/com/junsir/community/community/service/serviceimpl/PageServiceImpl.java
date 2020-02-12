@@ -29,13 +29,30 @@ public class PageServiceImpl implements PageService {
         /*取总页数*/
         Integer pages = pageInfo.getPages();
 
-
-
         PageDto pageDto  =new PageDto() ;
         pageDto.setPageNum(pageNum);
         pageDto.setPages(pages);
         pageDto.setQuestionList(listQ);
 
+        return pageDto;
+
+    }
+
+    @Override
+    public PageDto getPageByUser(Integer currentPageNum,String userId) {
+        PageHelper.startPage(currentPageNum+1, 5);
+        List<QuestionDto> listQ = questionDao.selectQuestionsAndUserAvatarToIndexByUser(userId);
+
+        PageInfo pageInfo = new PageInfo(listQ);
+        /*取当前页码*/
+        Integer pageNum = pageInfo.getPageNum();
+        /*取总页数*/
+        Integer pages = pageInfo.getPages();
+
+        PageDto pageDto = new PageDto();
+        pageDto.setPageNum(pageNum);
+        pageDto.setPages(pages);
+        pageDto.setQuestionList(listQ);
         return pageDto;
 
     }
