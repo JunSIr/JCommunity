@@ -32,10 +32,14 @@
 
 
                 <div class="form-group">
-                        <label for="id">id验证</label>
-                        <input type="text" class="form-control" placeholder="请输入下方显示数字" id="id" name="id" ></input>
 
-                        <input type="hidden" class="form-control" th:text="${id}" id="id"name="id" placeholder="问题标题……">
+
+
+<!--                        <input type="text" class="form-control" placeholder="请输入下方显示数字" id="id" name="id" ></input>
+                        <input type="hidden" class="form-control" th:text="${id}" id="id"name="id" placeholder="问题标题……">-->
+
+                    <!--此处使用th：text无效-->
+                    <input type="hidden" class="form-control" th:value="${id}" id="id"name="id" placeholder="问题标题……">
 
                     <br>
 
@@ -45,13 +49,13 @@
                 <div class="form-group">
 
                     <label for="description">问题补充 (必填，请参照右侧提示):</label>
-                    <textarea name="description" id="description" class="form-control" cols="30"
+                    <textarea th:text="${question.description}" name="description" id="description" class="form-control" cols="30"
                               rows="10" placeholder="问题补充……"></textarea>
                 </div>
 
                 <div class="form-group">
                     <label for="tag">添加标签:</label>
-                    <input type="text" class="form-control" id="tag" name="tag" placeholder="标签..以;分割">
+                    <input th:value="${question.tag}" type="text" class="form-control" id="tag" name="tag" placeholder="标签..以;分割">
                 </div>
                 <button type="submit" class="btn btn-success btn-publish">发布</button>
 
