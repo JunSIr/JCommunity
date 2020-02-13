@@ -5,7 +5,7 @@
 
 
 
-<resultMap id="BaseResultMap" type="com.junsir.community.community.model.Question">
+<resultMap id="BaseResultMap" type="com.junsir.community.community.model.Comment">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="title" jdbcType="VARCHAR" property="title" />
     <result column="comment_count" jdbcType="INTEGER" property="commentCount" />
