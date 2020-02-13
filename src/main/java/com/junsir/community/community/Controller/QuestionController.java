@@ -22,8 +22,13 @@ public class QuestionController {
         /*右侧问题发起的用户资料*/
         model.addAttribute("user",user)  ;
 
+        /*更新浏览次数*/
+        questionService.updateViewCounts(id);
+
         Question question = questionService.findQuestionById(id)  ;
         model.addAttribute("question",question)  ;
+
+
 
         return "questiondetail" ;
     }

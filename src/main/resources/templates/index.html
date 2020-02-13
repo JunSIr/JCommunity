@@ -32,7 +32,7 @@
                     <img class="media-object" width="38px" height="38px" th:src="@{${questionDto.avatarUrl}}" alt="..."></a>
             </div>
             <div class="media-body">
-                <h4 class="media-heading" ><a th:text="${questionDto.title}"></a></h4>
+                <h4 class="media-heading" ><a th:href="@{/toQuestionDetail(id=${questionDto.id})}" th:text="${questionDto.title}"></a></h4>
 
                 <span class="text-color-999">发布了文章 • <span th:text="${questionDto.commentCount}"></span>个评论 • <span th:text="${questionDto.viewCount}"></span> 次浏览 • <span th:text="${questionDto.lastPushTime}"></span>
                 </span>

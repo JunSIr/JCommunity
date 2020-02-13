@@ -86,4 +86,9 @@
         where id = #{id,jdbcType=INTEGER}
     </update>
 
+
+    <update id="updateViewCounts" parameterType="int">
+        UPDATE question SET view_count = view_count + 1 WHERE id = #{id}
+  </update>
+
 </mapper>

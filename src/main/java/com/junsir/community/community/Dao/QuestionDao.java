@@ -26,4 +26,6 @@ public interface QuestionDao {
     public   Question findQuestionById(int id )  ;
 
     public  int updateByPrimaryKeySelective(Question question)  ;
+
+    public void  updateViewCounts(int id) ;
 }

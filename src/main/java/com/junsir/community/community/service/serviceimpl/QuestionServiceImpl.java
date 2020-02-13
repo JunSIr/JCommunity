@@ -44,4 +44,9 @@ public class QuestionServiceImpl implements QuestionService {
         int k = questionDao.updateByPrimaryKeySelective(question) ;
         return  k ;
     }
+
+    @Override
+    public void updateViewCounts(int id) {
+        questionDao.updateViewCounts(id);
+    }
 }

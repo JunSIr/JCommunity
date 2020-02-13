@@ -17,4 +17,6 @@ public interface QuestionService {
 
     public  int updateByPrimaryKeySelective(Question question)  ;
 
+    public void  updateViewCounts(int id) ;
+
 }
