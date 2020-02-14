@@ -7,4 +7,6 @@ import java.util.List;
 public interface CommentService {
 
     public List<Comment> selectCommentByQuestionId(Integer id) ;
+
+    public  void  insert(Comment comment)  ;
 }

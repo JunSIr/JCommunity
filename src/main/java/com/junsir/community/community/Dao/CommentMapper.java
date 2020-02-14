@@ -9,4 +9,6 @@ import java.util.List;
 public interface CommentMapper {
 
     public List<Comment> selectCommentByQuestionId(Integer id) ;
+
+    public  void  insert(Comment comment)  ;
 }

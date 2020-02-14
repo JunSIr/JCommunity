@@ -91,4 +91,8 @@
         UPDATE question SET view_count = view_count + 1 WHERE id = #{id}
   </update>
 
+    <update id="updateCommentCount" parameterType="int">
+        UPDATE question SET comment_count = comment_count + 1 WHERE id = #{id}
+  </update>
+
 </mapper>

@@ -4,10 +4,25 @@
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/bootstrap-theme.css">
 
+<!--markdown editor-->
+<script src="editor.md-master/editormd.js"></script>
+<link rel="stylesheet" href="editor.md-master/css/editormd.css">
+
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 
 <head>
 
+    <script th:inline="javascript">
+        $(function() {
+            var editor = editormd("test-editor", {
+                width  : "100%",
+                height : 300,
+                path : "editor.md-master/lib/",
+                watch:false,
+                placeholder:"请评论..."
+            });
+        });
+    </script>
 
     <title>J社区</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -49,8 +64,9 @@
                 <div class="form-group">
 
                     <label for="description">问题补充 (必填，请参照右侧提示):</label>
+                    <div id="test-editor">
                     <textarea th:text="${question.description}" name="description" id="description" class="form-control" cols="30"
-                              rows="10" placeholder="问题补充……"></textarea>
+                              rows="10" placeholder="问题补充……"></textarea></div>
                 </div>
 
                 <div class="form-group">

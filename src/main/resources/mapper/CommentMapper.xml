@@ -18,6 +18,13 @@
     </select>
 
 
+    <insert id="insert" keyColumn="comment_id" keyProperty="commentId" parameterType="com.junsir.community.community.model.Comment" useGeneratedKeys="true" >
+    insert into comment (user_id, question_id, comment_info
+      )
+    values (#{userId,jdbcType=VARCHAR}, #{questionId,jdbcType=INTEGER}, #{commentInfo,jdbcType=VARCHAR}
+      )
+  </insert>
+
 
 
 </mapper>

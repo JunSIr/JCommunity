@@ -49,4 +49,10 @@ public class QuestionServiceImpl implements QuestionService {
     public void updateViewCounts(int id) {
         questionDao.updateViewCounts(id);
     }
+
+    @Override
+    public void updateCommentCount(int id) {
+        questionDao.updateCommentCount(id);
+    }
+
 }

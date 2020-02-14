@@ -38,4 +38,9 @@ public class CommentServiceImpl implements CommentService {
 
         return commentList ;
     }
+
+    @Override
+    public void insert(Comment comment) {
+        commentMapper.insert(comment);
+    }
 }
