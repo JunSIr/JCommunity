@@ -56,7 +56,13 @@ markdown -> html
                     'userId':userId
                 },
                 error:function () {
-                    alert("评论成功")
+                    var usersession = [[${user1Id}]];
+                    if (usersession==null){
+                        alert("请先登陆")
+                    }else {
+                        alert("评论成功")
+                    }
+
                 }
             }
             $("#commentForm").ajaxSubmit(option)
@@ -89,7 +95,8 @@ markdown -> html
                 |  推荐数
                 <span th:text="${question.awesomeCount}"></span>
                         |
-                <span th:if="${user.id}==${question.userId}" class="glyphicon glyphicon-pencil" aria-hidden="true" ><a  th:href="@{/toUpdateQuestion(id=${question.id})}">edit</a></span>
+
+                <span th:if="${user1Id}==${question.userId}" class="glyphicon glyphicon-pencil" aria-hidden="true" ><a  th:href="@{/toUpdateQuestion(id=${question.id})}">edit</a></span>
             </span>
 
             <hr>
@@ -150,7 +157,7 @@ markdown -> html
                 <br>
                 <form id="commentForm" name="commentForm" method="post" action="#">
 
-                <textarea id="comment" name="comment" class="comment" placeholder="在此输入评论"></textarea>
+                <textarea id="comment" name="comment" class="comment" placeholder="请先登陆，否则无效"></textarea>
                 <br>
                 <input value="提交" type="submit" onclick="submit1()" class="btn btn-success btn-publish"></input>
                 </form>

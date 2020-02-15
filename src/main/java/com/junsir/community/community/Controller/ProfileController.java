@@ -1,11 +1,14 @@
 package com.junsir.community.community.Controller;
 
 import com.junsir.community.community.Dto.PageDto;
+import com.junsir.community.community.model.GitHubUser;
 import com.junsir.community.community.service.PageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class ProfileController {
@@ -18,8 +21,11 @@ public class ProfileController {
     }
 
     @RequestMapping("/profile/question")
-    public String toProfileQuestion(Integer currentPageNum,Model model){
-        PageDto pageDto =  pageService.getPage(currentPageNum) ;
+    public String toProfileQuestion(Integer currentPageNum, Model model, HttpServletRequest request){
+
+        GitHubUser user  = (GitHubUser) request.getSession().getAttribute("user");
+
+        PageDto pageDto =  pageService.getPageByUser(currentPageNum,user.getId()) ;
         /*写给前端页面*/
         model.addAttribute("pageDto",pageDto)  ;
         model.addAttribute("pageNum",pageDto.getPageNum());

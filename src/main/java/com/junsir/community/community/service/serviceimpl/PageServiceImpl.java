@@ -20,7 +20,7 @@ public class PageServiceImpl implements PageService {
     @Override
     public PageDto getPage(Integer currentPageNum) {
 
-        PageHelper.startPage(currentPageNum+1, 5);
+        PageHelper.startPage(currentPageNum+1, 8);
         List<QuestionDto> listQ  = questionDao.selectQuestionsAndUserAvatarToIndex() ;
 
         PageInfo pageInfo= new PageInfo(listQ);

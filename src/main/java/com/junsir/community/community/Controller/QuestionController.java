@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +26,7 @@ public class QuestionController {
     private CommentService commentService ;
 
     @RequestMapping("/toQuestionDetail")
-    public String  toQuestionDetail(int id, Model model){
+    public String  toQuestionDetail(int id, Model model, HttpServletRequest request){
 
         GitHubUser user = questionService.selectUserByQuestionId(id)  ;
         /*右侧问题发起的用户资料*/
@@ -33,6 +34,16 @@ public class QuestionController {
 
         /*更新浏览次数*/
         questionService.updateViewCounts(id);
+
+        /*编辑图标是否展示*/
+        GitHubUser user1 = new GitHubUser() ;
+        user1 = (GitHubUser) request.getSession().getAttribute("user");
+        if (user1!=null){
+            String id1 = user1.getId() ;
+            model.addAttribute("user1Id",id1) ;
+        }
+
+
 
         Question question = questionService.findQuestionById(id)  ;
         model.addAttribute("question",question)  ;
