@@ -38,7 +38,7 @@
   </insert>
 
     <select id="selectQuestionsAndUserAvatarToIndex" resultType="com.junsir.community.community.Dto.QuestionDto">
-        SELECT  q.* , u.avatar_url  from question q , github_user u WHERE q.user_id=u.id
+       SELECT  q.* , u.avatar_url  from question q , github_user u WHERE q.user_id=u.id  ORDER BY last_push_time DESC
     </select>
 
     <select id="selectQuestionsAndUserAvatarToIndexByUser" parameterType="string" resultType="com.junsir.community.community.Dto.QuestionDto">
