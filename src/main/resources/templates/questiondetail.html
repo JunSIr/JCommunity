@@ -80,7 +80,7 @@ markdown -> html
 <div class="container-fluid">
     <!-- Stack the columns on mobile by making one full-width and the other half-width -->
     <div class="row">
-        <div class="col-lg-9 col-md-12 col-sm-12">
+        <div class="col-lg-9 col-md-12 col-sm-12 clo-xs-12">
             <input id="questionId" name="questionId" type="hidden" th:value="${question.id}">
 
 
@@ -107,7 +107,7 @@ markdown -> html
 
             </div>
 
-        <div class="col-lg-3 col-md-12 col-sm-12">
+        <div class="col-lg-3 col-md-12 col-sm-12 clo-xs-12">
             <h3 class="creator">发起人</h3>
 
             <div class="media">
@@ -126,7 +126,7 @@ markdown -> html
 
         </div>
 
-        <div   class="col-lg-12 col-md-12 col-sm-12">
+        <div   class="col-lg-12 col-md-12 col-sm-12 clo-xs-12">
             <div th:each="comment:${commentList}" >
 
 
@@ -150,7 +150,7 @@ markdown -> html
             </div>
         </div>
 
-        <div class="col-lg-12 col-md-12 col-sm-12">
+        <div class="col-lg-12 col-md-12 col-sm-12 clo-xs-12">
             <hr>
             <tr>
                 <h4>添加回复</h4>
