@@ -36,7 +36,7 @@ public class GitHubController {
     @Value("${client_secret}")
     public  String clientSecret ;
 
-    @GetMapping("/github/collback")
+    @GetMapping("/github/callback")
     public  String callback(@RequestParam(name = "code")String code, HttpServletRequest request,  RedirectAttributes attributes) throws IOException {
 
         /*遵从GitHub第三方登陆授权流程*/
