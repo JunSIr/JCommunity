@@ -58,7 +58,7 @@ import java.util.Date;
         Question question = questionDao.findQuestionById(id);
         model.addAttribute("question",question) ;
 
-        return "/updateQuestion" ;
+        return "updateQuestion" ;
     }
     @RequestMapping("/updateQuestion")
     public String  updateQuestion(Question question){
